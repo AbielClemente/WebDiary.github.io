@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Diary</title>
+  <style>
+   .heart{
+border-radius: 5%;
+   }
+       
+    
+footer{
+    background-color: rgb(253, 252, 251);
+        text-align: center;
+        width: 100%;
+        padding-top: 5PX;
+        padding-bottom: 5PX;
+        
+      
+    }
+    .headerint{
+        background-color: antiquewhite;
+        width: 100%;
+        height: 40px;
+        padding-top: 15px;
+        padding-bottom: 20PX;
+        position:unset; 
+    }
+    head{
+        background-image: url('dairybag.jpg');
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url('dairybag.jpg');
+      background-size: s100%;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: #fff;
+      padding: 20px;
+      padding-top: 500x;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      background-image: url('backgroundinb.jpg');
+    
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      margin-bottom: 20px;
+      background-color: aqua;
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="file"] {
+      margin-bottom: 20px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #a62556;
+      color: #fff;
+      border-radius: 5px;
+      cursor:cell;
+      animation:backwards;
+      
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+
+    .entry {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 20px;
+      margin-bottom: 20px;
+    }
+
+    .entry h3 {
+      margin-top: 0;
+    }
+
+    .entry img {
+      max-width: 100%;
+      border-radius: 5px;
+    }
+
+    .comment-input {
+      width: calc(100% - 70px);
+      margin-right: 10px;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    .comment-button {
+      padding: 8px 12px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .comment-button:hover {
+      background-color: #0056b3;
+      
+    }
+
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #23ba44;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #e442cb;
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
+  </style>
+  <header>
+    <div class="topnav">
+        <a class="active" href="home">Home</a>
+        <a href="news">News</a>
+        <a href="contact">Contact</a>
+        <div class="topnav-right">
+          <a href="search">Search</a>
+          <a href="about">About</a>
+        </div>
+      </div>
+</div>
+  </header>
+</head>
+<body>  
+    <h1><li></li>
+"Embrace each day with the curiosity of a child, the courage of a warrior, and the heart of a dreamer. In the canvas of your life, paint every moment with kindness, laughter, and love. Remember, amidst life's twists and turns, you're the artist of your own masterpiece." 
+    </h1><li></li>
+
+
+  <div class="container">
+    <h1>My Diary</h1>
+    <form id="diaryForm">
+      <input type="text" id="name" placeholder="Your Name"><br>
+      <input type="date" id="date"><br><br>
+      <input type="text" id="mood" placeholder="Your Mood"><br>
+      <input type="text" id="title" placeholder="Title"><br>
+      <textarea id="content" placeholder="Write your diary entry here..."></textarea><br>
+      <input type="file" id="fileInput"><br>
+      <button type="submit">Save</button>
+    </form>
+
+    <div id="entries">
+      <!-- Display diary entries here -->
+    </div>
+  </div>
+
+  <script>
+    const diaryForm = document.getElementById('diaryForm');
+    const entriesDiv = document.getElementById('entries');
+
+    diaryForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const mood = document.getElementById('mood').value;
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const file = document.getElementById('fileInput').files[0];
+
+      saveEntry(name, date, mood, title, content, file);
+
+      // Clear form fields
+      document.getElementById('name').value;
+      document.getElementById('date').value;
+      document.getElementById('mood').value;
+      document.getElementById('title').value;
+      document.getElementById('content').value;
+      document.getElementById('fileInput').value ;
+    });
+
+    function saveEntry(name, date, mood, title, content, file) {
+      const entryDiv = document.createElement('div');
+      entryDiv.classList.add('entry');
+      entryDiv.innerHTML = `
+        <h3>${title}</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Mood:</strong> ${mood}</p>
+        <p>${content}</p>
+        <img src="${file ? URL.createObjectURL(file) : ''}" alt="Uploaded Image">
+        <input type="text" class="comment-input" placeholder="Comment...">
+        <button class="comment-button">Comment</button>
+      `;
+      entriesDiv.appendChild(entryDiv);
+
+    }
+  </script>
+</body>
+<footer>
+    <H1>
+        <div class="heart">
+        <img src="heart.jpg" width="50px" height="50">
+        Good luck my friend
+        <img src="heart.jpg" width="50px" height="50">
+    </div>
+        
+    </H1>
+</footer>
+</html>
